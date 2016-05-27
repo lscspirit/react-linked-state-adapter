@@ -1,0 +1,47 @@
+{
+  "name": "linked-state-adapter",
+  "version": "0.1.0",
+  "description": "React Mixins and helper functions that allow React application to continue the use of ReactLink post React v15",
+  "main": "adapter.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-register --require test/.setup.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lscspirit/linked-state-adapter.git"
+  },
+  "keywords": [
+    "React",
+    "ReactLink",
+    "valueLink",
+    "checkedLink",
+    "LinkedStateMixin",
+    "react-addons-linked-state-mixin",
+    "adapter"
+  ],
+  "author": "Derrick Yeung",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lscspirit/linked-state-adapter/issues"
+  },
+  "homepage": "https://github.com/lscspirit/linked-state-adapter#readme",
+  "dependencies": {
+    "invariant": "^2.2.1",
+    "warning": "^2.1.0"
+  },
+  "peerDependencies": {
+    "react": ">= 15.0.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-register": "^6.9.0",
+    "chai": "^3.5.0",
+    "enzyme": "^2.3.0",
+    "faker": "^3.1.0",
+    "jsdom": "^9.2.0",
+    "mocha": "^2.5.3",
+    "react-addons-test-utils": "^15.1.0",
+    "react-dom": "^15.1.0"
+  }
+}
