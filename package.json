@@ -1,5 +1,5 @@
 {
-  "name": "linked-state-adapter",
+  "name": "react-linked-state-adapter",
   "version": "0.1.0",
   "description": "React Mixins and helper functions that allow React application to continue the use of ReactLink post React v15",
   "main": "adapter.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lscspirit/linked-state-adapter.git"
+    "url": "git+https://github.com/lscspirit/react-linked-state-adapter.git"
   },
   "keywords": [
     "React",
@@ -22,9 +22,9 @@
   "author": "Derrick Yeung",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lscspirit/linked-state-adapter/issues"
+    "url": "https://github.com/lscspirit/react-linked-state-adapter/issues"
   },
-  "homepage": "https://github.com/lscspirit/linked-state-adapter#readme",
+  "homepage": "https://github.com/lscspirit/react-linked-state-adapter#readme",
   "dependencies": {
     "invariant": "^2.2.1",
     "warning": "^2.1.0"
