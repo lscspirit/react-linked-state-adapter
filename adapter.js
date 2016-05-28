@@ -1,19 +1,30 @@
 "use strict";
 
-var convertLink = require('./convert-link');
+var LinkUtils = require('./link-utils');
 var warning   = require('warning');
 var invariant = require('invariant');
 
 var didWarnDeprecation = false;
 
 var LinkedStateAdapter = {
-  __getConvertedLink : function() {
-    if (this.__convertedLink == undefined) {
-      var link = this.props.valueLink || this.props.checkedLink;
-      this.__convertedLink = link ? convertLink(link) : null;
+  __getOnChange : function(link, isChecked) {
+    var cache = isChecked === true ?
+      ( this.__valueOnChanges || (this.__valueOnChanges = []) ) :
+      ( this.__checkedOnChanges || (this.__checkedOnChanges = []) );
+
+    for (var i = 0; i < cache.length; i++) {
+      if (cache[i].fn == link.requestChange) return cache[i].onChange;
     }
 
-    return this.__convertedLink;
+    var onChange = isChecked === true ?
+      LinkUtils.getCheckedOnChange(link) : 
+      LinkUtils.getOnChange(link);
+    cache.push({
+      fn       : link.requestChange,
+      onChange : onChange
+    });
+
+    return onChange;
   },
 
   componentWillMount : function() {
@@ -22,22 +33,18 @@ var LinkedStateAdapter = {
 
   componentWillReceiveProps : function(nextProps) {
     _assertSingleLink(nextProps);
-
-    if (this.props.valueLink != nextProps.valueLink || this.props.checkedLink != nextProps.checkedLink) {
-      this.__convertedLink = undefined;
-    }
   },
 
   value : function() {
     if (this.props.valueLink) {
-      return this.__getConvertedLink().value;
+      return LinkUtils.getValue(this.props.valueLink);
     }
     return this.props.value;
   },
 
   checked : function() {
     if (this.props.checkedLink) {
-      return this.__getConvertedLink().value;
+      return LinkUtils.getValue(this.props.checkedLink);
     }
     return this.props.checked;
   },
@@ -48,9 +55,9 @@ var LinkedStateAdapter = {
     if (this.props.onChange) {
       return this.props.onChange;
     } else if (this.props.valueLink) {
-      return this.__getConvertedLink().onChange;
+      return this.__getOnChange(this.props.valueLink);
     } else if (this.props.checkedLink) {
-      return this.__getConvertedLink().checkedOnChange;
+      return this.__getOnChange(this.props.checkedLink, true);
     }
 
     return undefined;
