@@ -3,16 +3,16 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { expect } from 'chai';
-import assign from 'object-assign';
-import LinkedStateAdapter from '../adapter';
+import faker from 'faker';
 
-const faker = require('faker');
+import ReactLinkAdapterMixin from '../src/react-link-adapter-mixin';
+import MockState from './helpers/mock-state';
 
 //
 // Specs
 //
 
-describe('LinkedStateAdapter', function() {
+describe('ReactLinkAdapterMixin', function() {
   var mockComponentState = null;
 
   //
@@ -241,50 +241,18 @@ describe('LinkedStateAdapter', function() {
 });
 
 //
-// Mock React Component State
-//
-
-function MockState(initial) {
-  var _state = initial || {};
-  var _stateSettters = {};
-
-  this.get = function(key) {
-    return _state[key];
-  };
-
-  this.setState = function(states) {
-    assign(_state, states);
-  };
-
-  this.linkState = function(key) {
-    return {
-      value: this.get(key),
-      requestChange: _getStateSetter(key)
-    };
-  };
-
-  //
-  // Private Method
-  //
-
-  function _getStateSetter(key) {
-    return _stateSettters[key] || (_stateSettters[key] = function(val) { _state[key] = val; });
-  }
-}
-
-//
 // Test Components
 //
 
 const TextInput = React.createClass({
-  mixins : [LinkedStateAdapter],
+  mixins : [ReactLinkAdapterMixin],
   render : function() {
     return <input type="text" value={ this.value() } onChange={ this.onChange() }/>;
   }
 });
 
 const CheckboxInput = React.createClass({
-  mixins : [LinkedStateAdapter],
+  mixins : [ReactLinkAdapterMixin],
   render : function() {
     return <input type="checkbox" checked={ this.checked() } onChange={ this.onChange() }/>;
   }

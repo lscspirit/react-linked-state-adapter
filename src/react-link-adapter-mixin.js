@@ -6,7 +6,7 @@ var invariant = require('invariant');
 
 var didWarnDeprecation = false;
 
-var LinkedStateAdapter = {
+var ReactLinkAdapterMixin = {
   __getOnChange : function(link, isChecked) {
     var cache = isChecked === true ?
       ( this.__valueOnChanges || (this.__valueOnChanges = []) ) :
@@ -17,8 +17,8 @@ var LinkedStateAdapter = {
     }
 
     var onChange = isChecked === true ?
-      LinkUtils.getCheckedOnChange(link) : 
-      LinkUtils.getOnChange(link);
+      LinkUtils.getOnCheckedChange(link) :
+      LinkUtils.getOnValueChange(link);
     cache.push({
       fn       : link.requestChange,
       onChange : onChange
@@ -68,7 +68,7 @@ var LinkedStateAdapter = {
 // Exports
 //
 
-module.exports = LinkedStateAdapter;
+module.exports = ReactLinkAdapterMixin;
 
 //
 // Helper Function

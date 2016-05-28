@@ -2,7 +2,7 @@
   "name": "react-linked-state-adapter",
   "version": "0.1.0",
   "description": "React Mixins and helper functions that allow React application to continue the use of ReactLink post React v15",
-  "main": "adapter.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register --require test/.setup.js"
   },

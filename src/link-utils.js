@@ -4,7 +4,7 @@ exports.getValue = function(link) {
   return link ? link.value : undefined;
 };
 
-exports.getOnChange = function(link) {
+exports.getOnValueChange = function(link) {
   if (link) {
     return function(e) {
       return link.requestChange(e.target.value);
@@ -13,7 +13,7 @@ exports.getOnChange = function(link) {
   return undefined;
 };
 
-exports.getCheckedOnChange = function(link) {
+exports.getOnCheckedChange = function(link) {
   if (link) {
     return function(e) {
       return link.requestChange(e.target.checked);
