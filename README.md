@@ -1,4 +1,4 @@
-# react-linked-state-adapter
+# react-linked-state-adapter [![Travis][build-badge]][build] [![npm package][npm-badge]][npm]
 
 This package provides two mixins, `AdaptedLinkedStateMixin` and `ReactLinkAdapterMixin`, that will help React applications to continue the use of `ReactLink` after it is deprecated/removed.
 
@@ -214,3 +214,8 @@ Changes are tracked as [Github releases](https://github.com/lscspirit/react-link
 ## License
 MIT
 
+[build]: https://travis-ci.org/lscspirit/react-linked-state-adapter
+[build-badge]: https://travis-ci.org/lscspirit/react-linked-state-adapter.svg?branch=master
+
+[npm]: https://www.npmjs.com/package/react-linked-state-adapter
+[npm-badge]: https://badge.fury.io/js/react-linked-state-adapter.svg
