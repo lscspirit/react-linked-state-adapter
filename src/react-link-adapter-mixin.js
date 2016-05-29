@@ -55,9 +55,9 @@ var ReactLinkAdapterMixin = {
     if (this.props.onChange) {
       return this.props.onChange;
     } else if (this.props.valueLink) {
-      return this.__getOnChange(this.props.valueLink);
+      return this.props.valueLink.onValueChange || this.__getOnChange(this.props.valueLink);
     } else if (this.props.checkedLink) {
-      return this.__getOnChange(this.props.checkedLink, true);
+      return this.props.checkedLink.onCheckedChange || this.__getOnChange(this.props.checkedLink, true);
     }
 
     return undefined;

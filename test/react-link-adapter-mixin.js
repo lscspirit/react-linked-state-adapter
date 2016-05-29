@@ -73,6 +73,15 @@ describe('ReactLinkAdapterMixin', function() {
         expect(mockComponentState.get('oldValue')).to.eq(oldTxt);
         expect(mockComponentState.get('newValue')).to.eq(newTxt);
       });
+
+      it("uses the existing onValueChange handler if the valueLink already has one", function() {
+        const link = mockComponentState.linkState('value');
+        link.onValueChange = function() {};
+
+        // link the state to the TextInput via valueLink
+        const wrapper = mount(<TextInput valueLink={ link }/>);
+        expect(wrapper.instance().onChange()).to.eq(link.onValueChange);
+      });
     });
 
     //
@@ -156,7 +165,7 @@ describe('ReactLinkAdapterMixin', function() {
         expect(mockComponentState.get('checked')).to.eq(!!isChecked);
       });
 
-      it('updates the input value when valueLink changes', function() {
+      it('updates the input value when checkedLink changes', function() {
         const isOldChecked = faker.random.boolean();
         mockComponentState.setState({
           oldChecked: isOldChecked,
@@ -181,6 +190,15 @@ describe('ReactLinkAdapterMixin', function() {
 
         expect(mockComponentState.get('oldChecked')).to.eq(oldChecked);
         expect(mockComponentState.get('newChecked')).to.eq(newChecked);
+      });
+
+      it("uses the existing onCheckedChange handler if the checkedLink already has one", function() {
+        const link = mockComponentState.linkState('value');
+        link.onCheckedChange = function() {};
+
+        // link the state to the TextInput via valueLink
+        const wrapper = mount(<CheckboxInput checkedLink={ link }/>);
+        expect(wrapper.instance().onChange()).to.eq(link.onCheckedChange);
       });
     });
 
