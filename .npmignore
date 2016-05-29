@@ -9,3 +9,7 @@ node_modules
 
 # IDEs
 .idea
+
+.gitignore
+.npmignore
+.travis.yml
